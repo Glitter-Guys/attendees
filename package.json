@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/server.js",
+    "dev-react": "webpack -d --watch"
   },
   "dependencies": {
     "express": "^4.16.2",
