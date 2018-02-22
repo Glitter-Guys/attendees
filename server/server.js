@@ -1,14 +1,11 @@
-const express = require('express');
-let app = express();
- 
- app.use(express.static(__dirname + '/../client/dist'));
- 
+var express = require('express');
+var app = express();
 
- 
- let port = 1128;
- 
- app.listen(port, function() {
-   console.log(`listening on port ${port}`);
- });
 
- 
+app.get('/', (req, res) => res.send('Hello World!'))
+
+
+app.listen(8000, function() {
+  console.log('listening on port 8000');
+});
+
