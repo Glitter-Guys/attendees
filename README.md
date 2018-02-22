@@ -35,5 +35,11 @@ From within the root directory:
 ```sh
 npm install -g webpack
 npm install
+npm install --save node
+npm install --save express
+npm install --save react react-dom
+npm install --save-dev babel-core babel-loader babel-preset-react
+npm install --save-dev webpack
+npm install --save-dev jest
 ```
 
