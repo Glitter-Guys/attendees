@@ -10,7 +10,8 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/server.js",
-    "dev-react": "webpack -d --watch"
+    "dev-react": "webpack -d --watch",
+    "get-data": "node seedDB.js"
   },
   "dependencies": {
     "express": "^4.16.2",
