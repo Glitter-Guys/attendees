@@ -11,7 +11,8 @@
     "test": "jest",
     "start": "nodemon server/server.js",
     "dev-react": "webpack -d --watch",
-    "get-data": "node seedDB.js"
+    "get-data": "node seedDB.js",
+    "create-db": "mysql -u root < createDB.sql"
   },
   "dependencies": {
     "express": "^4.16.2",

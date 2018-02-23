@@ -6,9 +6,13 @@ var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'me',
-  password : 'secret',
-  database : 'my_db'
+  user     : 'Sam',
+  database : 'meetup_data'
+});
+
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
 });
 
 
@@ -50,6 +54,7 @@ var formatData = function (data, eventIds) {
 }
 
 //mySQL schema
+
 
 
 
