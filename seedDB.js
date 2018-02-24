@@ -6,12 +6,12 @@ var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'Sam',
-  database : 'meetup_data'
+  user     : 'root',
+  password : '',
+  database : 'meetup'
 });
 
 connection.connect(function(err) {
-  if (err) throw err;
   console.log("Connected!");
 });
 
