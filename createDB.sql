@@ -4,6 +4,7 @@ USE meetup
 
 CREATE TABLE Users (
 	PersonID int,
+	id varchar(200),
   first varchar(200),
   last varchar(200),
   photoURL varchar(200)
