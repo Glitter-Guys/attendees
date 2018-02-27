@@ -15,6 +15,7 @@
     "create-db": "mysql -u root < createDB.sql"
   },
   "dependencies": {
+    "async": "^2.6.0",
     "express": "^4.16.2",
     "jquery": "^3.3.1",
     "jquery-ajax": "^2.1.4",
