@@ -83,6 +83,8 @@ let insertIntoDB = function (data, EventIds) {
 
 
 
+getDataFromAPI();
+
 
 connection.end();
 
