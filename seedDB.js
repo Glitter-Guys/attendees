@@ -1,7 +1,7 @@
-var data = require('./upcomingevents.js')
-var request = require('request');
-var eventIds = require('./seedEventIds.js');
-var mysql      = require('mysql');
+let data = require('./upcomingevents.js')
+let request = require('request');
+let eventIds = require('./seedEventIds.js');
+let mysql      = require('mysql');
 
 
 let connection = mysql.createConnection({
