@@ -23,10 +23,12 @@ let pool  = mysql.createPool({
 
 
 //get fake user seed data from api 
-request('https://randomuser.me/api/?results=50', function (error, response, body) {	
-	var results = JSON.parse(body)
-	insertIntoDB(results.results, eventIds); 
-});
+var getDataFromAPI = function () {
+	request('https://randomuser.me/api/?results=50', function (error, response, body) {	
+		var results = JSON.parse(body)
+		insertIntoDB(results.results, eventIds); 
+	});
+}
 
 
 
@@ -66,7 +68,6 @@ let insertIntoDB = function (data, EventIds) {
 				pool.getConnection(function (err, connection) {
 				let randomIndex = Math.floor(Math.random() * 107);
 				let randomEventId = eventIds[randomIndex];
-				console.log(randomEventId);
 				let eventQueryString = "insert into Events_users(event_id, user_id) values" + 
 				`('${randomEventId}', '${user.id}')`;
 		  	connection.query(eventQueryString, function (error) {
