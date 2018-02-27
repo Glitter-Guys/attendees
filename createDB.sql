@@ -21,7 +21,6 @@ CREATE TABLE Events (
 
 
 CREATE TABLE Events_users (
-	id int,
 	event_id varchar(200),
 	user_id varchar(200)
 );
