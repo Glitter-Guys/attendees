@@ -14,12 +14,7 @@ test('Receiving sample data from API', async () => {
 	//test JSON
 	//test invalid get request
 
-test('Receiving sample data from API and resolve function', async () => {
-	expect.assertions(1);
-	return expect(database.getDataFromAPI((data) => {
-		data.results
-	}).resolves.toEqual(!undefined)
-})
+
 
 //test format data funciton  
 	// test output data
