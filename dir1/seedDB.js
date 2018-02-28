@@ -21,12 +21,11 @@ let pool  = mysql.createPool({
 
 
 
-
 //get fake user seed data from api 
-var getDataFromAPI = function () {
+var getDataFromAPI = function (callback) {
 	request('https://randomuser.me/api/?results=50', function (error, response, body) {	
-		var results = JSON.parse(body)
-		insertIntoDB(results.results, eventIds); 
+		var parsedBody = JSON.parse(body)
+		callback(parsedBody.results, eventIds); 
 	});
 }
 
@@ -79,13 +78,23 @@ let insertIntoDB = function (data, EventIds) {
 			})
 		}
 	}
+	console.log("inserted into db")
+	connection.end();
 };
 
 
+getDataFromAPI(insertIntoDB);
 
-getDataFromAPI();
+
+// connection.end();
 
 
-connection.end();
+module.exports.getDataFromAPI = getDataFromAPI;
+module.exports.insertIntoDB = insertIntoDB;
+
+
+
+
+
 
 
