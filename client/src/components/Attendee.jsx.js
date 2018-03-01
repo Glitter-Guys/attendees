@@ -7,6 +7,7 @@ class Attendee extends React.Component {
       <div>
       <img src={this.props.user.photoURL}/>
         <div>{this.props.user.firstName + ' ' + this.props.user.lastName}</div>
+        <div>Member</div>
       </div>
       )
   }
