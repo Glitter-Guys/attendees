@@ -2,15 +2,18 @@
 var database =  require('../seedDB.js')
 
 
-//test data recieved from API
-test('Receiving sample data from API', async () => {
+//test if function exists
+test('has function that get data from API', async () => {
 	expect.assertions(1);
-	console.log(database.getDataFromAPI);
-	var sampleData = await database.getDataFromAPI()
-	console.log('testing: ', sampleData);
-	expect(sampleData.length).toBe(!undefined);
+	expect(typeof database.getDataFromAPI).toEqual('function');
 })
-	//test length
+//test length
+// test('function returns data from API', async () => {
+// 	expect.assertions(1);
+// 	return expect(database.getDataFromAPI( (data, events) => {
+// 		return data;
+// 	})).resolves.toBe(!undefined);
+// })
 	//test JSON
 	//test invalid get request
 

@@ -13,5 +13,7 @@ app.listen(8000, function() {
 
 
 app.get('/', (request, response) => {
-	
+	console.log('recieved get request');
 })
+
+

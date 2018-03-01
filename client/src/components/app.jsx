@@ -1,18 +1,27 @@
 //app.jsx
-import react from 'react'
-import react from 'react-dom'
+import React from 'react';
+import Attendees from './Attendees.jsx';
+import mockData from '../../../mockData';
 
-
-class Attendees extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+          numberOfAttendees: mockData.length,
+          eventUsers: mockData
+        }
     }
 
     render() {
-    	return (
-    		<div> Attendees </div>
-    		)
+      console.log(this.state.eventUsers)
+      return (
+        <div>
+        <div> Attendees {'(' + this.state.numberOfAttendees + ')'} </div>
+        <Attendees eventUsers={this.state.eventUsers} />
+        </div>
+        )
     }
 }
 
-export default Attendees;
+export default App;
+
