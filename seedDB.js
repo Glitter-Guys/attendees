@@ -21,12 +21,14 @@ let pool  = mysql.createPool({
 
 
 
-
 //get fake user seed data from api 
-request('https://randomuser.me/api/?results=50', function (error, response, body) {	
-	var results = JSON.parse(body)
-	insertIntoDB(results.results, eventIds); 
-});
+var getDataFromAPI = function (callback) {
+	request('https://randomuser.me/api/?results=50', function (error, response, body) {	
+		var parsedBody = JSON.parse(body)
+		callback(parsedBody.results, eventIds); 
+	});
+}
+
 
 
 
@@ -42,7 +44,7 @@ let insertIntoDB = function (data, EventIds) {
 			user.firstName = data[i].name.first
 			user.lastName = data[i].name.last
 			user.photoURL = data[i].picture.large
-
+			console.log(user);
 
 			//Open pooling connection and insert query	
 			pool.getConnection(function (err, connection) {
@@ -66,7 +68,6 @@ let insertIntoDB = function (data, EventIds) {
 				pool.getConnection(function (err, connection) {
 				let randomIndex = Math.floor(Math.random() * 107);
 				let randomEventId = eventIds[randomIndex];
-				console.log(randomEventId);
 				let eventQueryString = "insert into Events_users(event_id, user_id) values" + 
 				`('${randomEventId}', '${user.id}')`;
 		  	connection.query(eventQueryString, function (error) {
@@ -78,11 +79,23 @@ let insertIntoDB = function (data, EventIds) {
 			})
 		}
 	}
+	console.log("inserted into db")
+	connection.end();
 };
 
 
+getDataFromAPI(insertIntoDB);
 
 
-connection.end();
+// connection.end();
+
+
+module.exports.getDataFromAPI = getDataFromAPI;
+module.exports.insertIntoDB = insertIntoDB;
+
+
+
+
+
 
 

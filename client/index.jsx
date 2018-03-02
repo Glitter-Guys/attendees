@@ -1,11 +1,11 @@
 //Index jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import App from './src/components/app.jsx'
 
 
 ReactDOM.render(
-  <button>Get Data from API!</button>,
+  <App />,
   document.getElementById('app')
 );
 
