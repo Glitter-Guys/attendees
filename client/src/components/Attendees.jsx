@@ -4,7 +4,7 @@ import Attendee from './Attendee.jsx'
 class Attendees extends React.Component {
   render () {
     return (
-      <div>
+      <div className="attendees">
       <table>
         <tbody>
         <tr>
