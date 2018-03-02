@@ -17,6 +17,7 @@ class App extends React.Component {
       return (
         <div>
         <div> Attendees {'(' + this.state.numberOfAttendees + ')'} </div>
+        <div> See All </div>
         <Attendees eventUsers={this.state.eventUsers} />
         </div>
         )
