@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class Attendee extends React.Component {
   render () {
     return (
