@@ -7,9 +7,15 @@
   border-radius: 5px;
   background-color: white;
   font: "Graphik Meetup";
+  margin: 1px;
 }
 
 .attendee_picture {
-  color: orange;
+  border-radius: 100px;
+  height: 75%;
+  width: 75%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
