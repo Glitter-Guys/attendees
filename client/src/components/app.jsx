@@ -15,9 +15,11 @@ class App extends React.Component {
     render() {
       console.log(this.state.eventUsers)
       return (
-        <div>
-        <div className="app"> Attendees {'(' + this.state.numberOfAttendees + ')'} </div>
+        <div className="app">
+        <div className="attendees_header"> 
+        <div className="attendees_count"> Attendees {'(' + this.state.numberOfAttendees + ')'} </div>
         <div className="seeAll"> See All </div>
+        </div>
         <Attendees eventUsers={this.state.eventUsers} />
         </div>
         )
