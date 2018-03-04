@@ -1,0 +1,15 @@
+
+.attendees {
+  background-color: #F6F7F8;
+  font: "Graphik Meetup";
+}
+.attendee {
+  border-radius: 5px;
+  background-color: white;
+  font: "Graphik Meetup";
+}
+
+.attendee_picture {
+  color: orange;
+}
+
