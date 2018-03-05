@@ -22,7 +22,7 @@ let pool  = mysql.createPool({
 
 
 //get fake user seed data from api 
-var getDataFromAPI = function (callback) {
+let getDataFromAPI = function (callback) {
 	request('https://randomuser.me/api/?results=50', function (error, response, body) {	
 		var parsedBody = JSON.parse(body)
 		callback(parsedBody.results, eventIds); 
@@ -92,8 +92,8 @@ getDataFromAPI(insertIntoDB);
 
 module.exports.getDataFromAPI = getDataFromAPI;
 module.exports.insertIntoDB = insertIntoDB;
-
-
+module.exports.pool = pool;
+module.exports.connection = connection
 
 
 
