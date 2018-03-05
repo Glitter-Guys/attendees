@@ -44,7 +44,7 @@ let insertIntoDB = function (data, EventIds) {
 			user.firstName = data[i].name.first
 			user.lastName = data[i].name.last
 			user.photoURL = data[i].picture.large
-			console.log(user);
+			// console.log(user);
 
 			//Open pooling connection and insert query	
 			pool.getConnection(function (err, connection) {
