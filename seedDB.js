@@ -93,7 +93,7 @@ getDataFromAPI(insertIntoDB);
 module.exports.getDataFromAPI = getDataFromAPI;
 module.exports.insertIntoDB = insertIntoDB;
 module.exports.pool = pool;
-module.exports.connection = connection
+module.exports.connection = connection;
 
 
 

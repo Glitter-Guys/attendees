@@ -25,7 +25,7 @@ class App extends React.Component {
       const eventId = '43552367433'
       axios.get(`/api/event/${eventId}`)
         .then((res) => {
-          console.log(res)
+          console.log('res', res)
         })
         .catch((err) => {
           throw err;
