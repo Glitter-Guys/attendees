@@ -2,6 +2,7 @@
 import React from 'react';
 import Attendees from './Attendees.jsx';
 import mockData from '../../../mockData';
+import $ from 'jquery';
 
 class App extends React.Component {
     constructor(props) {
@@ -10,6 +11,14 @@ class App extends React.Component {
           numberOfAttendees: mockData.length,
           eventUsers: mockData
         }
+    }
+
+    componentDidMount() {
+      this.getAttendees();
+    }
+
+    getAttendees() {
+
     }
 
     render() {
