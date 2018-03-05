@@ -21,10 +21,10 @@ app.get('/api/event/:eventid', (req, res) => {
         // And done with the connection.
         connection.release();
         // Handle error after the release.
-        console.log('results', results)
-        res.send('response')
+        res.send(results)
         if (error) throw error;
     });
   })
 });
+
 

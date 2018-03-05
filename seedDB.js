@@ -84,7 +84,7 @@ let insertIntoDB = function (data, EventIds) {
 };
 
 
-getDataFromAPI(insertIntoDB);
+// getDataFromAPI(insertIntoDB);
 
 
 // connection.end();

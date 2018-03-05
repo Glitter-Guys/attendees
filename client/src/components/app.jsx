@@ -22,10 +22,16 @@ class App extends React.Component {
       // const url = window.location.href;
       // const urlEnd = url.split('/event/')[1];
       // const eventId = urlEnd.split('/')[0];
-      const eventId = 'qvrtnnyxfbpb'
+      const eventId = 'ncvzxlyxgbkb'
       axios.get(`/api/event/${eventId}`)
         .then((res) => {
           console.log('res', res)
+          this.state.eventUsers = res.data;
+          this.state.numberOfAttendees = res.data.length;
+          this.setState((state) => ({
+            eventUsers: this.state.eventUsers,
+            numberOfAttendees: this.state.numberOfAttendees,
+          }))
         })
         .catch((err) => {
           throw err;
