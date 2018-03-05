@@ -2,7 +2,7 @@
 import React from 'react';
 import Attendees from './Attendees.jsx';
 import mockData from '../../../mockData';
-import axios from 'axios'
+import axios from 'axios';
 
 class App extends React.Component {
     constructor(props) {
@@ -19,10 +19,10 @@ class App extends React.Component {
 
 
     getAttendees() {
-      const url = window.location.href;
-      const urlEnd = url.split('/event/')[1];
-      const eventId = urlEnd.split('/')[0];
-
+      // const url = window.location.href;
+      // const urlEnd = url.split('/event/')[1];
+      // const eventId = urlEnd.split('/')[0];
+      const eventId = '43552367433'
       axios.get(`/api/event/${eventId}`)
         .then((res) => {
           console.log(res)
@@ -30,11 +30,8 @@ class App extends React.Component {
         .catch((err) => {
           throw err;
       })
+    }
 
-
-    const url = window.location.href;
-    const urlEnd = url.split('/event/')[1];
-    const eventId = urlEnd.split('/')[0];
 
     render() {
       console.log(this.state.eventUsers)

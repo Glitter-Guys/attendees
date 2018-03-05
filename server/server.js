@@ -12,7 +12,12 @@ app.listen(8000, function() {
 
 
 
-app.get('/', (request, response) => {
-	console.log('recieved get request');
-})
+// app.get('/', (request, response) => {
+// 	console.log('recieved get request');
+// })
 
+
+
+app.get('/api/event/:eventid', (req, res) => {
+  console.log('recieved request')
+});
