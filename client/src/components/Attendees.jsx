@@ -1,5 +1,6 @@
 import React from 'react';
-import Attendee from './Attendee.jsx'
+import Attendee from './Attendee.jsx';
+import styles from '../styles/attendee.css';
 
 class Attendees extends React.Component {
   render () {
