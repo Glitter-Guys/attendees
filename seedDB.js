@@ -22,7 +22,7 @@ let pool  = mysql.createPool({
 
 
 //get fake user seed data from api 
-var getDataFromAPI = function (callback) {
+let getDataFromAPI = function (callback) {
 	request('https://randomuser.me/api/?results=50', function (error, response, body) {	
 		var parsedBody = JSON.parse(body)
 		callback(parsedBody.results, eventIds); 
@@ -36,6 +36,7 @@ var getDataFromAPI = function (callback) {
 
 let insertIntoDB = function (data, EventIds) {
 		let currentUser; 
+		let users = [];
   	for (let i = 0; i < 50; i++) {
 
 			//format user data 
@@ -44,39 +45,42 @@ let insertIntoDB = function (data, EventIds) {
 			user.firstName = data[i].name.first
 			user.lastName = data[i].name.last
 			user.photoURL = data[i].picture.large
-			console.log(user);
-
-			//Open pooling connection and insert query	
-			pool.getConnection(function (err, connection) {
-			let userQueryString = "insert into Users(personId, id, first, last, photoURL) values" + 
-				`('${i}', '${user.id}', '${user.firstName}', '${user.lastName}', '${user.photoURL}')`;
-		  	connection.query(userQueryString, function (error) {
-			    // And done with the connection.
-			    connection.release();
-			    // Handle error after the release.
-			    if (error) throw error;
-			    // Don't use the connection here, it has been returned to the pool.
-			  	});
-	  	})
-
-
-	  	//insert events that user is attending into events_users table
-	  	let randomNumberOfEvents = Math.floor(Math.random()*20)
-			for (let j = 0; j < randomNumberOfEvents; j++) {
-
-				//open pooling connection and insert query
+			
+			//check for duplicats
+			if (users.indexOf(user.id) === -1) {
+				users.push(user.id)
+				//Open pooling connection and insert query	
 				pool.getConnection(function (err, connection) {
-				let randomIndex = Math.floor(Math.random() * 107);
-				let randomEventId = eventIds[randomIndex];
-				let eventQueryString = "insert into Events_users(event_id, user_id) values" + 
-				`('${randomEventId}', '${user.id}')`;
-		  	connection.query(eventQueryString, function (error) {
-			    // And done with the connection.
-			    connection.release();
-			    // Handle error after the release.
-			    if (error) throw error;
+				let userQueryString = "insert into Users(personId, id, first, last, photoURL) values" + 
+					`('${i}', '${user.id}', '${user.firstName}', '${user.lastName}', '${user.photoURL}')`;
+			  	connection.query(userQueryString, function (error) {
+				    // And done with the connection.
+				    connection.release();
+				    // Handle error after the release.
+				    if (error) throw error;
+				    // Don't use the connection here, it has been returned to the pool.
+				  	});
+		  	})
+			}
+			let eventsAttending = [];
+	  	//insert events that user is attending into events_users table
+	  	let randomNumberOfEvents = Math.floor(Math.random()*40)
+				for (let j = 0; j < randomNumberOfEvents; j++) {
+					let randomIndex = Math.floor(Math.random() * 107);
+					let randomEventId = eventIds[randomIndex];
+					if (eventsAttending.indexOf(randomEventId) === -1) {
+					//open pooling connection and insert query
+					pool.getConnection(function (err, connection) {
+						let eventQueryString = "insert into Events_users(event_id, user_id) values" + 
+						`('${randomEventId}', '${user.id}')`;
+				  	connection.query(eventQueryString, function (error) {
+					    // And done with the connection.
+					    connection.release();
+					    // Handle error after the release.
+					    if (error) throw error;
 			  	});
-			})
+				})
+			}
 		}
 	}
 	console.log("inserted into db")
@@ -84,7 +88,7 @@ let insertIntoDB = function (data, EventIds) {
 };
 
 
-getDataFromAPI(insertIntoDB);
+// getDataFromAPI(insertIntoDB);
 
 
 // connection.end();
@@ -92,8 +96,8 @@ getDataFromAPI(insertIntoDB);
 
 module.exports.getDataFromAPI = getDataFromAPI;
 module.exports.insertIntoDB = insertIntoDB;
-
-
+module.exports.pool = pool;
+module.exports.connection = connection;
 
 
 
