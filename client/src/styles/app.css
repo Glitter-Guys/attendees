@@ -1,0 +1,30 @@
+.app {
+  background-color: #F6F7F8;
+  float: left;
+  padding: 30px;
+}
+
+
+.attendees_header {
+  background-color: #F6F7F8;
+  display: inline-block;
+  padding-bottom: 20px;
+}
+
+.attendees_count {
+  display: inline-block;
+  font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  font-size: 20px;
+  text-decoration: bold;
+    background-color: #F6F7F8;
+}
+
+.seeAll {
+  display: inline-block;
+  background-color: #F6F7F8;
+  position: relative;
+  left: 450px;
+  color: #00a2c7;
+  font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+}

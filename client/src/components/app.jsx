@@ -3,6 +3,8 @@ import React from 'react';
 import Attendees from './Attendees.jsx';
 import mockData from '../../../mockData';
 import axios from 'axios';
+import styles from '../styles/app.css';
+
 
 class App extends React.Component {
     constructor(props) {
@@ -42,10 +44,10 @@ class App extends React.Component {
     render() {
       console.log(this.state.eventUsers)
       return (
-        <div className="app">
-        <div className="attendees_header"> 
-        <div className="attendees_count"> Attendees {'(' + this.state.numberOfAttendees + ')'} </div>
-        <div className="seeAll"> See All </div>
+        <div className={styles.app}>
+        <div className={styles.attendees_header}> 
+        <div className={styles.attendees_count}> Attendees {'(' + this.state.numberOfAttendees + ')'} </div>
+        <div className={styles.seeAll}> See All </div>
         </div>
         <Attendees eventUsers={this.state.eventUsers} />
         </div>
