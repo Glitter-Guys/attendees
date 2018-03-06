@@ -14,7 +14,8 @@ app.listen(8000, function() {
 
 app.get('/api/event/:eventid', (req, res) => {
   const eventId = `${req.params.eventid}`;
-  console.log('recieved request', eventId )
+
+  //get Users from database by eventId
   db.pool.getConnection(function (err, connection) {
       const eventQueryString = "SELECT * FROM Events_users RIGHT JOIN Users ON Events_users.user_id=Users.id WHERE Events_users.event_id = " + '"' + eventId + '"'
       connection.query(eventQueryString, function (error, results) {

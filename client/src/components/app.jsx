@@ -22,7 +22,7 @@ class App extends React.Component {
       // const url = window.location.href;
       // const urlEnd = url.split('/event/')[1];
       // const eventId = urlEnd.split('/')[0];
-      const eventId = 'ncvzxlyxgbkb'
+      const eventId = 'qvbnvkyxgbcb'
       axios.get(`/api/event/${eventId}`)
         .then((res) => {
           console.log('res', res)

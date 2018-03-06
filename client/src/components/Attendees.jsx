@@ -16,7 +16,7 @@ class Attendees extends React.Component {
         </tr>
         <tr>
           {this.props.eventUsers.map( (user, index) => {
-            if (index > 4 && index < 9) {
+            if (index >= 4 && index < 8) {
               return <td><Attendee key={4 + index} user={user} /></td> 
             }
           })}
