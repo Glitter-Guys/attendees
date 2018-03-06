@@ -10,8 +10,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          numberOfAttendees: mockData.length,
-          eventUsers: mockData
+          numberOfAttendees: 0,
+          eventUsers: []
         }
     }
 
