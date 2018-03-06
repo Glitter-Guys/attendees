@@ -41,5 +41,40 @@ npm install --save react react-dom
 npm install --save-dev babel-core babel-loader babel-preset-react
 npm install --save-dev webpack
 npm install --save-dev jest
+npm install --save mysql
+npm install --save mysql-server
+npm install --save axios
+
 ```
+
+##To seed the database. 
+
+
+1) From the command line, run these two commands: 
+  mysql.server start
+  mysql 
+      (^^if the second command does not work run: 'sudo mysql')
+
+
+2)Uncomment line 91 in seedDB.js in the root directory
+
+3)From the command line, run these two commands to create and seed the database: 
+  npm run create-db
+  npm run get-data
+
+4) Comment out line 91 in seedDB.js to prevent reseeding of the database. 
+
+
+##To initalize with live data from the eventId within the url
+
+1) In client/src/components/app.jsx, uncomment lines 24, 25, and 26
+
+2) In client/src/components/app.jsx, comment out line 27
+
+
+
+
+
+
+
 
