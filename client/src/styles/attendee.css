@@ -1,0 +1,36 @@
+.attendee {
+  border-radius: 10px;
+  background-color: white;
+  font: "Graphik Meetup";
+  margin: 1px;
+  text-align: center;
+  padding: 5px 0px 0px 5px;
+  height: 150px;
+  width: 150px;
+}
+
+.attendee_picture {
+  margin-top: 10px;
+  border-radius: 100px;
+  height: 60%;
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.attendee:hover {
+  box-shadow: 1px 1px 1px 1px #C0C0C0;
+ }
+
+
+.attendee_name {
+  margin-top: 5px;
+  font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  font-size: 14px;
+}
+
+.attendee_role {
+  font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  font-size: 10px;
+}
