@@ -1,6 +1,6 @@
-var express = require('express');
-var app = express();
-var db = require('../seedDB.js');
+const express = require('express');
+const app = express();
+const db = require('../seedDB.js');
 
 
 // app.get('/', (req, res) => res.send('Hello World!'))
