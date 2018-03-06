@@ -47,6 +47,7 @@ npm install --save axios
 npm install --save-dev jest-enzyme
 npm install --save-dev nodemon
 npm install --save style-loader css-loader
+npm install --save cors
 
 ```
 
@@ -82,6 +83,11 @@ npm install --save style-loader css-loader
 
 
 
+##Install cors if not done already
+  1) npm install --save cors
+  2) in server/server.js, add the following:
+    const cors = require('cors')
+    app.use(cors())
 
 
 

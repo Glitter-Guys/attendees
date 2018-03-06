@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const db = require('../seedDB.js');
-
+const cors = require('cors');
 
 // app.get('/', (req, res) => res.send('Hello World!'))
-
+app.use(cors())
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.listen(8000, function() {
