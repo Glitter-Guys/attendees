@@ -44,32 +44,41 @@ npm install --save-dev jest
 npm install --save mysql
 npm install --save mysql-server
 npm install --save axios
+npm install --save-dev jest-enzyme
+npm install --save-dev nodemon
+npm install --save style-loader css-loader
 
 ```
+
+
+##To initalize server and webpack
+  From the command line run the following: 
+    1) npm start
+    2) npm run dev-react
 
 ##To seed the database. 
 
 
-1) From the command line, run these two commands: 
-  mysql.server start
-  mysql 
-      (^^if the second command does not work run: 'sudo mysql')
+  1) From the command line, run these two commands: 
+    mysql.server start
+    mysql 
+        (^^if the second command does not work run: 'sudo mysql')
 
 
-2)Uncomment line 91 in seedDB.js in the root directory
+  2)Uncomment line 91 in seedDB.js in the root directory
 
-3)From the command line, run these two commands to create and seed the database: 
-  npm run create-db
-  npm run get-data
+  3)From the command line, run these two commands to create and seed the database: 
+    npm run create-db
+    npm run get-data
 
-4) Comment out line 91 in seedDB.js to prevent reseeding of the database. 
+  4) Comment out line 91 in seedDB.js to prevent reseeding of the database. 
 
 
 ##To initalize with live data from the eventId within the url
 
-1) In client/src/components/app.jsx, uncomment lines 24, 25, and 26
+  1) In client/src/components/app.jsx, uncomment lines 24, 25, and 26
 
-2) In client/src/components/app.jsx, comment out line 27
+  2) In client/src/components/app.jsx, comment out line 27
 
 
 
