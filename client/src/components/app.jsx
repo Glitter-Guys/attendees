@@ -27,7 +27,6 @@ class App extends React.Component {
       const eventId = 'qvbnvkyxgbcb'
       axios.get(`/api/event/${eventId}`)
         .then((res) => {
-          console.log('res', res)
           this.state.eventUsers = res.data;
           this.state.numberOfAttendees = res.data.length;
           this.setState((state) => ({
@@ -42,7 +41,6 @@ class App extends React.Component {
 
 
     render() {
-      console.log(this.state.eventUsers)
       return (
         <div className={styles.app}>
         <div className={styles.attendees_header}> 

@@ -33,7 +33,6 @@ let getDataFromAPI = function (callback) {
 
 
 
-
 let insertIntoDB = function (data, EventIds) {
 		let currentUser; 
 		let users = [];
@@ -84,18 +83,18 @@ let insertIntoDB = function (data, EventIds) {
 		}
 	}
 	console.log("inserted into db")
-	connection.end();
+	// connection.end();
 };
 
 
-// getDataFromAPI(insertIntoDB);
+getDataFromAPI(insertIntoDB);
 
 
-// connection.end();
+connection.end();
 
 
-module.exports.getDataFromAPI = getDataFromAPI;
-module.exports.insertIntoDB = insertIntoDB;
+// module.exports.getDataFromAPI = getDataFromAPI;
+// module.exports.insertIntoDB = insertIntoDB;
 module.exports.pool = pool;
 module.exports.connection = connection;
 
