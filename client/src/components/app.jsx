@@ -25,7 +25,7 @@ class App extends React.Component {
       const urlEnd = url.split('/event/')[1];
       const eventId = urlEnd.split('/')[0];
       // const eventId = 'qvbnvkyxgbcb'
-      axios.get(`/api/event/${eventId}`)
+      axios.get(`/event/${eventId}`)
         .then((res) => {
           this.state.eventUsers = res.data;
           this.state.numberOfAttendees = res.data.length;

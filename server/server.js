@@ -12,7 +12,7 @@ app.listen(8000, function() {
 });
 
 
-app.get('/api/event/:eventid', (req, res) => {
+app.get('/event/:eventid', (req, res) => {
   const eventId = `${req.params.eventid}`;
 
   //get Users from database by eventId
