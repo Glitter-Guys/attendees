@@ -12,11 +12,14 @@
     "start": "nodemon server/server.js",
     "dev-react": "webpack -d --watch",
     "get-data": "node seedDB.js",
-    "create-db": "mysql -u root < createDB.sql"
+    "create-db": "mysql -u root < createDB.sql",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback"
   },
   "dependencies": {
     "async": "^2.6.0",
     "axios": "^0.18.0",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "mysql": "^2.15.0",
     "node": "^9.7.0",
