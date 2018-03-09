@@ -13,8 +13,7 @@
     "dev-react": "webpack -d --watch",
     "get-data": "node seedDB.js",
     "create-db": "mysql -u root < createDB.sql",
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback"
+    "docker": "node createDatabase.js && node seedDB.js && nodemon server/server.js" 
   },
   "dependencies": {
     "async": "^2.6.0",

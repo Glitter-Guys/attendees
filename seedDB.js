@@ -5,7 +5,7 @@ let mysql      = require('mysql');
 
 
 let connection = mysql.createConnection({
-  host     : '127.0.0.1',
+  host     : 'database',
   user     : 'root',
   password : '',
   database : 'meetup',
@@ -13,7 +13,7 @@ let connection = mysql.createConnection({
 });
 
 let pool  = mysql.createPool({
-  host     : '127.0.0.1',
+  host     : 'database',
   user     : 'root',
   password : '',
   database : 'meetup',
@@ -36,6 +36,7 @@ let getDataFromAPI = function (callback) {
 let insertIntoDB = function (data, EventIds) {
 		let currentUser; 
 		let users = [];
+		let count = 0;
   	for (let i = 0; i < 50; i++) {
 
 			//format user data 
@@ -56,11 +57,12 @@ let insertIntoDB = function (data, EventIds) {
 				    // And done with the connection.
 				    connection.release();
 				    // Handle error after the release.
-				    if (error) throw error;
+				    if (error)  console.log(error);
 				    // Don't use the connection here, it has been returned to the pool.
 				  	});
 		  	})
 			}
+
 			let eventsAttending = [];
 	  	//insert events that user is attending into events_users table
 	  	let randomNumberOfEvents = Math.floor(Math.random()*40)
@@ -76,22 +78,25 @@ let insertIntoDB = function (data, EventIds) {
 					    // And done with the connection.
 					    connection.release();
 					    // Handle error after the release.
-					    if (error) throw error;
+					    console.log("inserted Event_user into db")
 			  	});
 				})
 			}
 		}
 	}
-	console.log("inserted into db")
 	// connection.end();
 };
 
 
-getDataFromAPI(insertIntoDB);
 
 
-connection.end();
 
+getDataFromAPI(insertIntoDB)
+
+setTimeout(function () {
+	pool.end()
+	console.log('connection terminated')
+}, 10000)
 
 // module.exports.getDataFromAPI = getDataFromAPI;
 // module.exports.insertIntoDB = insertIntoDB;

@@ -21,10 +21,10 @@ class App extends React.Component {
 
 
     getAttendees() {
-      // const url = window.location.href;
-      // const urlEnd = url.split('/event/')[1];
-      // const eventId = urlEnd.split('/')[0];
-      const eventId = 'mxstsmyxgbhb'
+      const url = window.location.href;
+      const urlEnd = url.split('/event/')[1];
+      const eventId = urlEnd.split('/')[0];
+      // const eventId = 'mxstsmyxgbhb'
       axios.get(`/event/${eventId}`)
         .then((res) => {
           this.state.eventUsers = res.data;
@@ -55,5 +55,5 @@ class App extends React.Component {
 
 export default App;
 
-
+window.attendees = App
 

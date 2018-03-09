@@ -1,4 +1,4 @@
-CREATE DATABASE meetup;
+var schema = "CREATE DATABASE meetup;
 
 USE meetup
 
@@ -10,7 +10,7 @@ CREATE TABLE Users (
   photoURL varchar(200)
 );
 
-/* Create other tables and define schemas for them here! */
+
 
 
 CREATE TABLE Events (
@@ -24,6 +24,8 @@ CREATE TABLE Events_users (
 	event_id varchar(200),
 	user_id varchar(200)
 );
+"
 
+module.exports.schema = schema
 
 
