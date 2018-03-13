@@ -14,6 +14,7 @@
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
+4. [Database](#database)
 
 ## Usage
 
@@ -77,7 +78,15 @@ npm install
     const cors = require('cors')
     app.use(cors())
 
+## Database
 
+To start up the database on Windows:
+- start mysql server with CE GUI
+- cd to root project folder
+- `mysql` (enter)
+- `\. createDB.sql`
+- ** database should be created **
+- 
 
 
 
