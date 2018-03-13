@@ -5,7 +5,7 @@ let mysql      = require('mysql');
 
 
 let connection = mysql.createConnection({
-  host     : 'database',
+  host     : 'sqldb',
   user     : 'root',
   password : '',
   database : 'meetup',
@@ -13,7 +13,7 @@ let connection = mysql.createConnection({
 });
 
 let pool  = mysql.createPool({
-  host     : 'database',
+  host     : 'sqldb',
   user     : 'root',
   password : '',
   database : 'meetup',
@@ -78,7 +78,6 @@ let insertIntoDB = function (data, EventIds) {
 					    // And done with the connection.
 					    connection.release();
 					    // Handle error after the release.
-					    console.log("inserted Event_user into db")
 			  	});
 				})
 			}

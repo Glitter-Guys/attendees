@@ -10,10 +10,10 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/server.js",
-    "dev-react": "webpack -d --watch",
+    "dev-react": "webpack -d",
     "get-data": "node seedDB.js",
-    "create-db": "mysql -u root < createDB.sql",
-    "docker": "node createDatabase.js && node seedDB.js && nodemon server/server.js" 
+    "create-db": "node createDatabase.js",
+    "docker": "npm run create-db && npm run get-data && npm run start" 
   },
   "dependencies": {
     "async": "^2.6.0",
