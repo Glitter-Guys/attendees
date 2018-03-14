@@ -84,6 +84,12 @@ To start up the database on Windows:
 - start mysql server with CE GUI
 - cd to root project folder
 - `mysql` (enter)
+- In mysql terminal:
+```
+  CREATE DATABASE meetup
+    DEFAULT CHARACTER SET utf8mb4
+    DEFAULT COLLATE utf8mb4_general_ci;
+```
 - `\. createDB.sql`
 - ** database should be created **
 - Schemas:
