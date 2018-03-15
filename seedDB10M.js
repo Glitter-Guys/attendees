@@ -1,22 +1,6 @@
-const request = require('request');
 const mysql = require('mysql');
 const fake = require('faker');
 const data = require('./upcomingevents.js');
-
-// let connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//   database: 'meetup',
-//   multipleStatements: true,
-// });
-
-// let pool = mysql.createPool({
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//   database: 'meetup',
-// });
 
 const generateFakeData = (length = 5000) => {
   let users = new Array(length);
@@ -41,64 +25,63 @@ const insertIntoDB = (connection, users, cb) => {
   });
 };
 
-const insertBy100k = (sets, pool, connection, callback) => {
+const insertBy100k = (sets, connection, callback) => {
   let counter = 0;
-  const recurse = () => {
+  const recurse = (sets, connection, callback) => {
     counter += 1;
     const users = generateFakeData(100000);
-    insertIntoDB(pool, connection, users, (result) => {
+    insertIntoDB(connection, users, (result) => {
       console.log(counter * 100000, ' rows added');
       if (sets > counter) {
-        recurse(sets, pool, connection, callback);
+        recurse(sets, connection, callback);
       } else {
-        connection.release();
         callback();
       }
     });
   };
-  recurse();
+  recurse(sets, connection, callback);
 };
 
 const generateFakeEventsData = (firstUserId, numberOfUsers, numberOfEvents) => {
   const results = new Array(numberOfUsers * numberOfEvents);
-  for (let i = firstUserId; i < firstUserId + numberOfUsers; i += 1) {
+  for (let i = 0; i < numberOfUsers; i += 1) {
     for (let j = 0; j < numberOfEvents; j += 1) {
       const randEvent = Math.floor(Math.random() * 10000000);
-      results[(i - 1) * numberOfEvents + j] = [i, randEvent];
+      results[i * numberOfEvents + j] = [i + firstUserId, randEvent];
     }
   }
   return results;
 }
 
-// const insertIntoUsersEvents = function () {
-//   const counter = 0;
-//   const recurse = () => {
-//     const firstUser = counter * 10000;
-//     counter += 1;
-//     const lastUser = counter * 10000;
-//     const data = generateFakeEventsData (firstUser, lastUser);
-//   }
-//   const users = 
-//   let eventsAttending = [];
-//   //insert events that user is attending into events_users table
-//   let randomNumberOfEvents = Math.floor(Math.random() * 40);
-//   for (let j = 0; j < randomNumberOfEvents; j++) {
-//     let randomIndex = Math.floor(Math.random() * 10000000);
-//     //open pooling connection and insert query
-//     pool.getConnection(function (err, connection) {
-//       let eventQueryString = "insert into Events_users(event_id, user_id) values" +
-//         `('${randomIndex}', '${user.id}')`;
-//       connection.query(eventQueryString, function (error) {
-//         // And done with the connection.
-//         connection.release();
-//         // Handle error after the release.
-//         if (error) throw error;
-//       });
-//     });
-//   }
-// };
+const insertIntoEventsDB = (connection, eventsUsersData, cb) => {
+  let userQueryString = "INSERT INTO events_users(`event_id`, `user_id`) VALUES ?";
+  connection.query(userQueryString, [eventsUsersData], function (error, result) {
+    if (error) throw error;
+    cb(result);
+  });
+};
+
+const insertBy100kEvents = (sets, connection, callback) => {
+  let counter = 0;
+  const recurse = (sets, connection, callback) => {
+    const firstUserId = counter * 10000 + 1;
+    counter += 1;
+    const eventsUsersData = generateFakeEventsData(firstUserId, 10000, 10);
+    insertIntoEventsDB(connection, eventsUsersData, (result) => {
+      console.log(counter * 100000, ' rows added');
+      if (sets > counter) {
+        recurse(sets, connection, callback);
+      } else {
+        callback();
+      }
+    });
+  };
+  recurse(sets, connection, callback);
+};
 
 module.exports.generateFakeData = generateFakeData;
 module.exports.insertIntoDB = insertIntoDB;
 module.exports.insertBy100k = insertBy100k;
 module.exports.generateFakeEventsData = generateFakeEventsData;
+module.exports.insertIntoEventsDB = insertIntoEventsDB;
+module.exports.insertBy100kEvents = insertBy100kEvents;

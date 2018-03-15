@@ -12,6 +12,6 @@ CREATE TABLE Events (
   organizer varchar(200)
 );
 CREATE TABLE Events_users (
-	event_id varchar(200),
-	user_id varchar(200)
+	event_id int,
+	user_id int
 );
