@@ -13,13 +13,16 @@
     "dev-react": "webpack -d",
     "get-data": "node seedDB.js",
     "create-db": "node createDatabase.js",
-    "docker": "npm run create-db && npm run get-data && npm run start" 
+    "docker": "npm run create-db && npm run get-data && npm run start"
   },
   "dependencies": {
     "async": "^2.6.0",
     "axios": "^0.18.0",
     "cors": "^2.8.4",
+    "execsql": "0.0.3",
     "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "hashids": "^1.1.4",
     "mysql": "^2.15.0",
     "node": "^9.7.0",
     "react": "^16.2.0",
