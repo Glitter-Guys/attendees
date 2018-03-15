@@ -14,6 +14,7 @@
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
+4. [Database](#database)
 
 ## Usage
 
@@ -77,7 +78,49 @@ npm install
     const cors = require('cors')
     app.use(cors())
 
+## Database
 
-
-
-
+To start up the database on Windows:
+- start mysql server with CE GUI
+- cd to root project folder
+- `mysql` (enter)
+- In mysql terminal:
+```
+  CREATE DATABASE meetup
+    DEFAULT CHARACTER SET utf8mb4
+    DEFAULT COLLATE utf8mb4_general_ci;
+```
+- `\. createDB.sql`
+- ** database should be created **
+- Schemas:
+### events
+```
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| event_id  | int(11)      | YES  |     | NULL    |       |
+| id        | varchar(200) | YES  |     | NULL    |       |
+| organizer | varchar(200) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+```
+### users
+```
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| PersonID | int(11)      | YES  |     | NULL    |       |
+| id       | varchar(200) | YES  |     | NULL    |       |
+| first    | varchar(200) | YES  |     | NULL    |       |
+| last     | varchar(200) | YES  |     | NULL    |       |
+| photoURL | varchar(200) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+```
+### events_users
+```
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| event_id | varchar(200) | YES  |     | NULL    |       |
+| user_id  | varchar(200) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+```
