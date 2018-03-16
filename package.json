@@ -28,7 +28,8 @@
     "mysql": "^2.15.0",
     "node": "^9.7.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "request": "^2.85.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

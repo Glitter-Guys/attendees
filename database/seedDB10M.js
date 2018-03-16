@@ -1,6 +1,5 @@
 const mysql = require('mysql');
 const fake = require('faker');
-const data = require('./upcomingevents.js');
 
 const generateFakeData = (length = 5000) => {
   const users = new Array(length);
