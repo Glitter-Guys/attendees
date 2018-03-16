@@ -3,8 +3,8 @@ const fake = require('faker');
 const data = require('./upcomingevents.js');
 
 const generateFakeData = (length = 5000) => {
-  let users = new Array(length);
-  for (let i = 0; i < length; i++) {
+  const users = new Array(length);
+  for (let i = 0; i < length; i += 1) {
     let user = [
       i,
       fake.internet.userName(),
