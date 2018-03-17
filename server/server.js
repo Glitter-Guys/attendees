@@ -53,20 +53,13 @@ app.get('/api/:eventid/attendees', (req, res) => {
 
   //get Users from database by eventId
   pool.getConnection(function (err, connection) {
-      const eventQueryString = "SELECT * FROM Events_users RIGHT JOIN Users ON Events_users.user_id=Users.id WHERE Events_users.event_id = " + '"' + eventId + '"'
-      connection.query(eventQueryString, function (error, results) {
-        // And done with the connection.
-        connection.release();
-        // Handle error after the release.
-        res.send(results)
-        if (error) throw error;
+    const eventQueryString = "SELECT * FROM Events_users RIGHT JOIN Users ON Events_users.user_id=Users.id WHERE Events_users.event_id = " + '"' + eventId + '"'
+    connection.query(eventQueryString, function (error, results) {
+      // And done with the connection.
+      connection.release();
+      // Handle error after the release.
+      res.send(results)
+      if (error) throw error;
     });
   });
 });
-
-
-
-
-
-
-
