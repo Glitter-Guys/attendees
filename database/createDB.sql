@@ -1,6 +1,6 @@
 USE meetup;
 CREATE TABLE users (
-	PersonID INT AUTO_INCREMENT PRIMARY KEY,
+	PersonID INT AUTO_INCREMENT PRIMARY KEY USING HASH,
 	id VARCHAR(200),
   first VARCHAR(200),
   last VARCHAR(200),
@@ -9,5 +9,5 @@ CREATE TABLE users (
 CREATE TABLE events_users (
 	event_id INT, 
 	user_id INT,
-  INDEX(event_id)
+  INDEX(event_id) USING HASH
 );
