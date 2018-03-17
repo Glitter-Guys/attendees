@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   multipleStatements: true,
   connectTimeout: 20000,
 });
-const eventId = 2651975;
+const eventId = 2651975; 
 
 describe('test single query', () => {
   test('query all rows matching eventId of events_users', (done) => {

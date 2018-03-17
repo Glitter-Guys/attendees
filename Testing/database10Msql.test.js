@@ -11,7 +11,7 @@ describe('test data insertion', () => {
     connection = mysql.createConnection({
       host: 'localhost',
       user: 'root',
-      password: '',
+      password: '', 
       database: 'meetuptest',
       multipleStatements: true,
     });

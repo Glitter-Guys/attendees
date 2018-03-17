@@ -15,7 +15,7 @@ test('has function that get data from API', async () => {
 // 	})).resolves.toBe(!undefined);
 // })
 	//test JSON
-	//test invalid get request
+	//test invalid get request 
 
 
 
