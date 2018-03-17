@@ -1,3 +1,4 @@
+/* global describe, xdescribe, beforeAll, afterEach, afterAll, test, expect */
 const { MongoClient } = require('mongodb');
 const fake = require('faker');
 const cluster = require('cluster');
@@ -60,6 +61,22 @@ const insert10kDocsNoConnect = (forTable, collection, cb) => {
   });
 };
 
+const openDbInsert10k = (url, dbname, table, cb) => {
+  MongoClient.connect(url, (error, client) => {
+    if (error) throw error;
+    const db = client.db(dbname);
+    const collection = db.collection(table);
+    insert10kDocsNoConnect(table, collection, (error, result) => {
+      if (error) throw error;
+      const writeResult = result;
+      client.close((error) => {
+        if (error) throw error;
+        cb(writeResult);
+      });
+    });
+  });
+};
+
 const insertBatch = (size, url, dbname, table) => {
   let counter = size;
   MongoClient.connect(url, (error, client) => {
@@ -71,7 +88,6 @@ const insertBatch = (size, url, dbname, table) => {
       if (counter > 1) {
         insert10kDocsNoConnect(table, collection, cb);
       } else {
-        // when finished with batch, close client connection then exit cluster process
         client.close((error, result) => {
           if (error) throw error;
           process.exit();
@@ -110,4 +126,5 @@ const clusterInsert = (url, dbname, table, masterCallback) => {
 
 module.exports.insert10kDocs = insert10kDocs;
 module.exports.insert10kDocsNoConnect = insert10kDocsNoConnect;
+module.exports.openDbInsert10k = openDbInsert10k;
 module.exports.clusterInsert = clusterInsert;
