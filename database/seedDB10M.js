@@ -46,7 +46,7 @@ const generateFakeEventsData = (firstUserId, numberOfUsers, numberOfEvents) => {
   for (let i = 0; i < numberOfUsers; i += 1) {
     for (let j = 0; j < numberOfEvents; j += 1) {
       const randEvent = Math.floor(Math.random() * 10000000);
-      results[i * numberOfEvents + j] = [i + firstUserId, randEvent];
+      results[i * numberOfEvents + j] = [randEvent, i + firstUserId];
     }
   }
   return results;
