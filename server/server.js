@@ -61,7 +61,7 @@ app.get('/api/:eventid/attendees', (req, res) => {
         res.send(results)
         if (error) throw error;
     });
-  })
+  });
 });
 
 
