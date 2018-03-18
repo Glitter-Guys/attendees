@@ -5,7 +5,7 @@ const seedDBnoSQL = require('../database/seedDBnoSQL');
 const url = 'mongodb://localhost:27017';
 const dbname = 'meetuptest';
 
-xdescribe('test data insertion into users', () => {
+describe('test data insertion into users', () => {
   const table = 'users';
   test('insert 10000 documents in a bulk write', (done) => {
     seedDBnoSQL.insert10kDocs(url, dbname, table, (error, result) => {

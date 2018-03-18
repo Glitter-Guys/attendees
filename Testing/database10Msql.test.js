@@ -65,7 +65,7 @@ describe('test data insertion', () => {
       done();
     });
   });
-  test('insert 5 million records by 100k', (done) => {
+  xtest('insert 5 million records by 100k', (done) => {
     database.insertBy100k(50, connection, () => {
       connection.query('SELECT COUNT (*) FROM users', (error, results) => {
         if (error) throw error;
@@ -99,7 +99,7 @@ describe('test data insertion', () => {
     expect(fakeData2[0][0]).toBeLessThanOrEqual(5000000);
     expect(fakeData2[0][1]).toBeLessThanOrEqual(10000000);
   });
-  test('usersEvents - write 50M records to events_users', (done) => {
+  xtest('usersEvents - write 50M records to events_users', (done) => {
     database.insertBy100kEvents(500, connection, () => {
       connection.query('SELECT COUNT (*) FROM events_users', (error, results) => {
         if (error) throw error;

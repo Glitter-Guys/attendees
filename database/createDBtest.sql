@@ -1,6 +1,6 @@
 USE meetuptest;
 CREATE TABLE users (
-	PersonID INT AUTO_INCREMENT PRIMARY KEY USING HASH,
+	PersonID INT,
 	id VARCHAR(200),
   first VARCHAR(200),
   last VARCHAR(200),
@@ -8,6 +8,5 @@ CREATE TABLE users (
 );
 CREATE TABLE events_users (
 	event_id INT,
-	user_id INT,
-  INDEX(event_id) USING HASH
+	user_id INT
 );
