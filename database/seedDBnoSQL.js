@@ -28,8 +28,8 @@ const makeEventInserts = (num) => {
     const insert = {
       insertOne: {
         document: {
-          event_id: Math.ceil(Math.random() * 10000000),
-          user_id: Math.ceil(Math.random() * 5000000),
+          event_id: Math.floor(Math.random() * 10000000),
+          user_id: Math.floor(Math.random() * 5000000),
         },
       },
     };
