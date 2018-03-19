@@ -77,14 +77,14 @@ describe('test data insertion', () => {
   test('usersEvents - create fake data for 2 users, 10 events each', () => {
     const fakeData = database.generateFakeEventsData(1, 2, 10);
     expect(fakeData.length).toBe(20);
-    expect(fakeData[0][0]).toBeLessThanOrEqual(5000000);
-    expect(fakeData[0][1]).toBeLessThanOrEqual(10000000);
+    expect(fakeData[0][0]).toBeLessThanOrEqual(10000000);
+    expect(fakeData[0][1]).toBeLessThanOrEqual(5000000);
   });
   test('usersEvents - create fake data for 10000 users, 10 events each', () => {
     const fakeData = database.generateFakeEventsData(1, 10000, 10);
     expect(fakeData.length).toBe(100000);
-    expect(fakeData[0][0]).toBeLessThanOrEqual(5000000);
-    expect(fakeData[0][1]).toBeLessThanOrEqual(10000000);
+    expect(fakeData[0][0]).toBeLessThanOrEqual(10000000);
+    expect(fakeData[0][1]).toBeLessThanOrEqual(5000000);
   });
   test('usersEvents - write 100000 records to events_users', (done) => {
     const fakeData = database.generateFakeEventsData(1, 10000, 10);
@@ -96,8 +96,8 @@ describe('test data insertion', () => {
   test('usersEvents - create 100000 records starting at user # 10001', () => {
     const fakeData2 = database.generateFakeEventsData(10001, 10000, 10);
     expect(fakeData2.length).toBe(100000);
-    expect(fakeData2[0][0]).toBeLessThanOrEqual(5000000);
-    expect(fakeData2[0][1]).toBeLessThanOrEqual(10000000);
+    expect(fakeData2[0][0]).toBeLessThanOrEqual(10000000);
+    expect(fakeData2[0][1]).toBeLessThanOrEqual(5000000);
   });
   xtest('usersEvents - write 50M records to events_users', (done) => {
     database.insertBy100kEvents(500, connection, () => {
