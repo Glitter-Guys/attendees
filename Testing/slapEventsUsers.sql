@@ -1,0 +1,1 @@
+SELECT SQL_NO_CACHE * FROM events_users WHERE event_id=FLOOR(RAND()*100000);

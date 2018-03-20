@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
+let connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
@@ -22,7 +22,7 @@ const getRandEvents = (length) => {
     return Math.ceil(Math.random() * 10000000);
   });
 };
-const randEvents = getRandEvents(100);
+const randEvents = getRandEvents(1000);
 
 describe('test single query', () => {
   test('query all rows matching eventId of events_users', (done) => {
@@ -72,11 +72,12 @@ describe('test single query', () => {
       });
     }
   });
-  test('10000 queries in parallel with pool', (done) => {
-    let counter = 10000;
+  test('500 queries in parallel with pool', (done) => {
+    let counter = 500;
     const cb = (error, results) => {
       if (error) throw error;
       counter -= 1;
+      console.log('Counter is', counter, results);
       if (counter < 1) {
         expect(true).toBe(true);
         done();
@@ -88,10 +89,36 @@ describe('test single query', () => {
       pool.getConnection((error, connect) => {
         if (error) throw error;
         connect.query(queryAttendees, (error, results) => {
-          connect.release();
           cb(error, results);
         });
       });
     }
   });
+  xtest('500 queries in parallel without pool', (done) => {
+    let counter = 500;
+    const cb = (error, results) => {
+      if (error) throw error;
+      counter -= 1;
+      if (counter < 1) {
+        expect(true).toBe(true);
+        done();
+      }
+    };
+    for (let i = 0; i < 500; i += 1) {
+      eventId = randEvents[i];
+      const queryAttendees = `SELECT * FROM events_users WHERE event_id = '${eventId}'`;
+      connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'meetup',
+        multipleStatements: true,
+        connectTimeout: 20000,
+      });
+      connection.query(queryAttendees, (error, results) => {
+        if (error) throw error;
+        cb(error, results);
+      });
+    }
+  }, 60000);
 });
