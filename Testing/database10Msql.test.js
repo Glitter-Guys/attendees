@@ -6,7 +6,7 @@ let connection;
 let pool;
 let users;
 
-describe('test data insertion', () => {
+xdescribe('test data insertion', () => {
   beforeAll(() => {
     connection = mysql.createConnection({
       host: 'localhost',

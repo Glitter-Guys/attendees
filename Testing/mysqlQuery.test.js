@@ -1,28 +1,55 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
-let connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'meetup',
-  multipleStatements: true,
-  connectTimeout: 20000,
-});
-const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'meetup',
-  connectionLimit: 100,
-});
-let eventId = 2651975;
-const getRandEvents = (length) => {
-  const randEvents = new Array(length);
-  return randEvents.fill(0).map(() => {
-    return Math.ceil(Math.random() * 10000000);
+let connection;
+let pool;
+let eventId;
+let getRandEvents;
+let randEvents;
+let poolConnect;
+let poolQuery;
+
+beforeAll(() => {
+  connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'meetup',
+    multipleStatements: true,
+    connectTimeout: 20000,
   });
-};
-const randEvents = getRandEvents(1000);
+  pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'meetup',
+    connectionLimit: 100,
+  });
+  eventId = 2651975;
+  getRandEvents = (length) => {
+    const randEvents = new Array(length);
+    return randEvents.fill(0).map(() => {
+      return Math.ceil(Math.random() * 10000000);
+    });
+  };
+  randEvents = getRandEvents(1000);
+  poolConnect = () => {
+    return new Promise((resolve, reject) => {
+      pool.getConnection((error, connection) => {
+        if (error) reject(error);
+        resolve(connection);
+      });
+    });
+  };
+  poolQuery = (queryString, connection) => {
+    return new Promise((resolve, reject) => {
+      connection.query(queryString, (error, results) => {
+        connection.release();
+        if (error) reject(error);
+        resolve(results);
+      });
+    });
+  };
+});
 
 describe('test single query', () => {
   test('query all rows matching eventId of events_users', (done) => {
@@ -34,91 +61,49 @@ describe('test single query', () => {
       done();
     });
   });
-  test('100 queries in sequence with pool', (done) => {
-    let counter = 100;
-    const cb = (error, results) => {
-      if (error) throw error;
-      counter -= 1;
-      if (counter < 1) {
-        expect(true).toBe(true);
+  test('100 queries (the same) promisified with pool', (done) => {
+    const queryString = 'SELECT * FROM events_users WHERE event_id = 1';
+    const queryAsyncLoop = async (queryString, i) => {
+      const connection = await poolConnect();
+      const results = await poolQuery(queryString, connection);
+      if (i === 99) {
+        expect(results[0].user_id).toBe(1656149);
         done();
       }
     };
-    for (let i = 0; i < counter; i += 1) {
-      eventId = randEvents[i];
-      const queryAttendees = `SELECT * FROM events_users WHERE event_id = '${eventId}'`;
-      pool.query(queryAttendees, cb);
-    }
-  }, 10000);
-  test('100 queries in parallel with pool', (done) => {
-    let counter = 100;
-    const cb = (error, results) => {
-      if (error) throw error;
-      counter -= 1;
-      if (counter < 1) {
-        expect(true).toBe(true);
-        done();
-      }
-    };
-    for (let i = 0; i < counter; i += 1) {
-      eventId = randEvents[i];
-      const queryAttendees = `SELECT * FROM events_users WHERE event_id = '${eventId}'`;
-      pool.getConnection((error, connect) => {
-        if (error) throw error;
-        connect.query(queryAttendees, (error, results) => {
-          connect.release();
-          cb(error, results);
-        });
-      });
+    for (let i = 0; i < 100; i += 1) {
+      queryAsyncLoop(queryString, i);
     }
   });
-  test('500 queries in parallel with pool', (done) => {
-    let counter = 500;
-    const cb = (error, results) => {
-      if (error) throw error;
-      counter -= 1;
-      console.log('Counter is', counter, results);
-      if (counter < 1) {
-        expect(true).toBe(true);
+  test('400 queries (SELECT id=1) promisified with pool', (done) => {
+    const queryString = 'SELECT * FROM events_users WHERE event_id = 1';
+    const queryAsyncLoop = async (queryString, i) => {
+      const connection = await poolConnect();
+      const results = await poolQuery(queryString, connection);
+      if (i === 399) {
+        expect(results[0].user_id).toBe(1656149);
         done();
       }
     };
-    for (let i = 0; i < counter; i += 1) {
-      eventId = randEvents[i];
-      const queryAttendees = `SELECT * FROM events_users WHERE event_id = '${eventId}'`;
-      pool.getConnection((error, connect) => {
-        if (error) throw error;
-        connect.query(queryAttendees, (error, results) => {
-          cb(error, results);
-        });
-      });
+    for (let i = 0; i < 400; i += 1) {
+      queryAsyncLoop(queryString, i);
     }
   });
-  xtest('500 queries in parallel without pool', (done) => {
-    let counter = 500;
-    const cb = (error, results) => {
-      if (error) throw error;
-      counter -= 1;
-      if (counter < 1) {
-        expect(true).toBe(true);
+  test('100 random queries promisified with pool', (done) => {
+    const queryAsyncLoop = async (queryString, i) => {
+      const connection = await poolConnect();
+      const results = await poolQuery(queryString, connection);
+      if (i === 99) {
+        console.log(results);
+        expect.anything(results);
         done();
       }
     };
-    for (let i = 0; i < 500; i += 1) {
-      eventId = randEvents[i];
-      const queryAttendees = `SELECT * FROM events_users WHERE event_id = '${eventId}'`;
-      connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'meetup',
-        multipleStatements: true,
-        connectTimeout: 20000,
-      });
-      connection.query(queryAttendees, (error, results) => {
-        if (error) throw error;
-        cb(error, results);
-      });
+    randEvents = getRandEvents(100);
+    for (let i = 0; i < 100; i += 1) {
+      const event = randEvents[i];
+      const queryString = `SELECT * FROM events_users WHERE event_id = '${event}'`;
+      queryAsyncLoop(queryString, i);
     }
-  }, 60000);
+  });
 });
