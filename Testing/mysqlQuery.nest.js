@@ -8,7 +8,7 @@ let randEvents;
 let poolConnect;
 let poolQuery;
 
-beforeAll(() => {
+xbeforeAll(() => {
   connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -51,7 +51,7 @@ beforeAll(() => {
   };
 });
 
-describe('test single query', () => {
+xdescribe('test single query', () => {
   test('query all rows matching eventId of events_users', (done) => {
     const queryAttendees = `SELECT * FROM events_users WHERE event_id = '${eventId}'`;
     connection.query(queryAttendees, (error, results) => {
