@@ -5,7 +5,6 @@ const generateFakeData = (length = 5000) => {
   const users = new Array(length);
   for (let i = 0; i < length; i += 1) {
     let user = [
-      i,
       fake.internet.userName(),
       fake.name.firstName(),
       fake.name.lastName(),
@@ -17,7 +16,7 @@ const generateFakeData = (length = 5000) => {
 }
 
 const insertIntoDB = (connection, users, cb) => {
-  let userQueryString = "INSERT INTO users(`personId`, `id`, `first`, `last`, `photoURL`) VALUES ?";
+  let userQueryString = "INSERT INTO users(`id`, `first`, `last`, `photoURL`) VALUES ?";
   connection.query(userQueryString, [users], function (error, result) {
     if (error) throw error;
     cb(result);

@@ -1,17 +1,13 @@
 USE meetuptest;
-CREATE TABLE Users (
-	PersonID int,
-	id varchar(200),
-  first varchar(200),
-  last varchar(200),
-  photoURL varchar(200)
+CREATE TABLE users (
+	PersonID INT AUTO_INCREMENT PRIMARY KEY USING HASH,
+	id VARCHAR(200),
+  first VARCHAR(200),
+  last VARCHAR(200),
+  photoURL VARCHAR(200)
 );
-CREATE TABLE Events (
-	event_id int,
-  id	varchar(200),
-  organizer varchar(200)
-);
-CREATE TABLE Events_users (
-	event_id int,
-	user_id int
+CREATE TABLE events_users (
+	event_id INT,
+	user_id INT,
+  INDEX(event_id) USING HASH
 );

@@ -9,10 +9,10 @@ const connection = mysql.createConnection({
   multipleStatements: true,
 });
 
-database.insertBy100kEvents(500, connection, () => {
-  console.log('jobs done - 50M events_users');
+// database.insertBy100kEvents(500, connection, () => {
+//   console.log('jobs done - 50M events_users');
   database.insertBy100k(50, connection, () => {
     console.log('jobs done - 5M users');
     connection.close();
   });
-});
+// });`
