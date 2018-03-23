@@ -89,25 +89,4 @@ describe('join query', () => {
       cb(docs, randEvent);
     });
   });
-  test('mongo aggregate', (done) => {
-    const eventId = Math.floor(Math.random() * 10000000);
-    collectionEvents.aggregate([
-      {
-        $match: { event_id: eventId },
-      },
-      {
-        $lookup: {
-          from: 'users',
-          localField: 'user_id',
-          foreignField: '_id',
-          as: 'userGroup',
-        },
-      },
-    ], null).toArray((err, res) => {
-      if (err) throw err;
-      expect(res[0].event_id).toBe(eventId);
-      expect(typeof res[0].userGroup).toBe('object');
-      done();
-    });
-  });
 });

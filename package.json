@@ -18,6 +18,7 @@
   "dependencies": {
     "async": "^2.6.0",
     "axios": "^0.18.0",
+    "bluebird": "^3.5.1",
     "cors": "^2.8.4",
     "execsql": "0.0.3",
     "express": "^4.16.2",
@@ -28,6 +29,7 @@
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "node": "^9.7.0",
+    "pg-promise": "^8.2.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "request": "^2.85.0"

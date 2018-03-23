@@ -13,7 +13,7 @@ const generateFakeData = (length = 5000) => {
     users[i] = user;
   }
   return users;
-}
+};
 
 const insertIntoDB = (connection, users, cb) => {
   let userQueryString = "INSERT INTO users(`id`, `first`, `last`, `photoURL`) VALUES ?";

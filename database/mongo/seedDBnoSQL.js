@@ -10,7 +10,7 @@ const makeInserts = (num, workerId, cycle, size) => {
     const insert = {
       insertOne: {
         document: {
-          _id: i + userStart,
+          // _id: i + userStart,
           PersonID: i + userStart,
           id: fake.internet.userName(),
           first: fake.name.firstName(),
@@ -100,5 +100,7 @@ const clusterInsert = (url, dbname, table, masterCallback) => {
   }
 };
 
+module.exports.makeInserts = makeInserts;
+module.exports.makeEventInserts = makeEventInserts;
 module.exports.insert10kDocsNoConnect = insert10kDocsNoConnect;
 module.exports.clusterInsert = clusterInsert;
