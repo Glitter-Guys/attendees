@@ -1,8 +1,7 @@
 //app.jsx
 import React from 'react';
-import Attendees from './Attendees.jsx';
-import mockData from '../../../mockData';
 import axios from 'axios';
+import Attendees from './Attendees.jsx';
 import styles from '../styles/app.css';
 
 
@@ -54,6 +53,4 @@ class App extends React.Component {
 }
 
 export default App;
-
-
 window.Attendees = App;

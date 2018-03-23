@@ -20,13 +20,10 @@ const getEvent = (eventId) => {
     });
 };
 const getAttendees = (eventId) => {
-  db.any('SELECT * FROM events_users RIGHT JOIN users ON users.PersonID=events_users.user_id WHERE events_users.event_id = $1', eventId)
-    .then((data) => {
-      console.log(data);
-    });
+  return db.any('SELECT * FROM events_users RIGHT JOIN users ON users.PersonID=events_users.user_id WHERE events_users.event_id = $1', eventId);
 };
 
-getEvent(500);
+// getEvent(500);
 // getAttendees(500);
 
 // module.exports.addUser = addUser;
