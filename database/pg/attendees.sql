@@ -5,7 +5,7 @@ CREATE DATABASE attendees;
 
 CREATE TABLE users
 (
-  PersonID INT,
+  personid INT,
   id VARCHAR(200),
   first VARCHAR(200),
   last VARCHAR(200),
