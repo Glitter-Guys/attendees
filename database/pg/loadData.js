@@ -41,13 +41,13 @@ const insertAllUsers = (start) => {
         insertAllUsers(start + 5000);
       } else {
         console.log('done with users');
+        insertAllEvents(0);
       }
     })
     .catch(error => {
       throw error;
     });
 };
-// insertAllUsers(0);
 const insertAllEvents = (start) => {
   const query = pgp.helpers.insert(generateEventData(), columnsEventsUsers);
   db.none(query)
@@ -62,4 +62,5 @@ const insertAllEvents = (start) => {
       throw error;
     });
 };
-// insertAllEvents(0);
+
+insertAllUsers(0);

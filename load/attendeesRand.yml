@@ -1,0 +1,16 @@
+config:
+  target: 'http://localhost:8000'
+  phases:
+    - duration: 20
+      arrivalRate: 50
+  payload:
+    path: "popularMillion.csv"
+    fields:
+      - "id"
+scenarios:
+  - name: 'test db api speed'
+    flow:
+    - get:
+        url: '/event/{{ id }}'
+    - get:
+        url: '/api/{{ id }}/attendees/'

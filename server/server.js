@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -5,7 +6,6 @@ const db = require('../database/pg/pgQueries');
 
 const app = express();
 app.use(cors());
-app.use(express.static(path.join(__dirname, '/../client')));
 app.use('/event/:eventid/', express.static(path.join(__dirname, '/../client/dist')));
 
 app.get('/api/:eventid/attendees', (req, res) => {
