@@ -4,7 +4,6 @@ import axios from 'axios';
 import Attendees from './Attendees.jsx';
 import styles from '../styles/app.css';
 
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -13,20 +12,28 @@ class App extends React.Component {
           eventUsers: []
         }
     }
-
     componentDidMount() {
       this.getAttendees();
     }
-
-
     getAttendees() {
       const url = window.location.href;
       const urlEnd = url.split('/event/')[1];
       const eventId = urlEnd.split('/')[0];
-      // const eventId = 'mxstsmyxgbhb'
       axios.get(`/api/${eventId}/attendees`)
         .then((res) => {
-          this.state.eventUsers = res.data;
+          const data = [];
+          for (let i = 0; i < res.data.length; i += 1) {
+            let row = res.data[i].row;
+            row = row.slice(1, row.length - 1);
+            row = row.split(',');
+            data.push({
+              first: row[0],
+              last: row[1],
+              photourl: row[2],
+            });
+          }
+          // const data = res;
+          this.state.eventUsers = data;
           this.state.numberOfAttendees = res.data.length;
           this.setState((state) => ({
             eventUsers: this.state.eventUsers,
@@ -37,8 +44,6 @@ class App extends React.Component {
           throw err;
       })
     }
-
-
     render() {
       return (
         <div className={styles.app}>

@@ -18,6 +18,7 @@ app.get('/api/:eventid/attendees', (req, res) => {
       throw error;
     });
 });
+
 app.listen(8000, () => {
   console.log('listening on port 8000');
 });
