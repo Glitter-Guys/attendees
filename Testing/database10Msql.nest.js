@@ -6,7 +6,7 @@ let connection;
 let pool;
 let users;
 
-describe('test data insertion', () => {
+xdescribe('test data insertion', () => {
   beforeAll(() => {
     connection = mysql.createConnection({
       host: 'localhost',
@@ -65,7 +65,7 @@ describe('test data insertion', () => {
       done();
     });
   });
-  test('insert 5 million records by 100k', (done) => {
+  xtest('insert 5 million records by 100k', (done) => {
     database.insertBy100k(50, connection, () => {
       connection.query('SELECT COUNT (*) FROM users', (error, results) => {
         if (error) throw error;
@@ -77,14 +77,14 @@ describe('test data insertion', () => {
   test('usersEvents - create fake data for 2 users, 10 events each', () => {
     const fakeData = database.generateFakeEventsData(1, 2, 10);
     expect(fakeData.length).toBe(20);
-    expect(fakeData[0][0]).toBeLessThanOrEqual(5000000);
-    expect(fakeData[0][1]).toBeLessThanOrEqual(10000000);
+    expect(fakeData[0][0]).toBeLessThanOrEqual(10000000);
+    expect(fakeData[0][1]).toBeLessThanOrEqual(5000000);
   });
   test('usersEvents - create fake data for 10000 users, 10 events each', () => {
     const fakeData = database.generateFakeEventsData(1, 10000, 10);
     expect(fakeData.length).toBe(100000);
-    expect(fakeData[0][0]).toBeLessThanOrEqual(5000000);
-    expect(fakeData[0][1]).toBeLessThanOrEqual(10000000);
+    expect(fakeData[0][0]).toBeLessThanOrEqual(10000000);
+    expect(fakeData[0][1]).toBeLessThanOrEqual(5000000);
   });
   test('usersEvents - write 100000 records to events_users', (done) => {
     const fakeData = database.generateFakeEventsData(1, 10000, 10);
@@ -96,10 +96,10 @@ describe('test data insertion', () => {
   test('usersEvents - create 100000 records starting at user # 10001', () => {
     const fakeData2 = database.generateFakeEventsData(10001, 10000, 10);
     expect(fakeData2.length).toBe(100000);
-    expect(fakeData2[0][0]).toBeLessThanOrEqual(5000000);
-    expect(fakeData2[0][1]).toBeLessThanOrEqual(10000000);
+    expect(fakeData2[0][0]).toBeLessThanOrEqual(10000000);
+    expect(fakeData2[0][1]).toBeLessThanOrEqual(5000000);
   });
-  test('usersEvents - write 50M records to events_users', (done) => {
+  xtest('usersEvents - write 50M records to events_users', (done) => {
     database.insertBy100kEvents(500, connection, () => {
       connection.query('SELECT COUNT (*) FROM events_users', (error, results) => {
         if (error) throw error;
