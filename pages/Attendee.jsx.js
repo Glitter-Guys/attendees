@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from '../styles/attendee.css';
+// import styles from './styles/attendee.css';
 
 class Attendee extends React.Component {
   render () {
     return (
-      <div className={styles.attendee}>
-      <img className={styles.attendee_picture} src={this.props.user.photourl}/>
-        <div className={styles.attendee_name}>{this.props.user.first + ' ' + this.props.user.last}</div>
-        <div className={styles.attendee_role}>Member</div>
+      <div>
+      <img src={this.props.user.photourl}/>
+        <div>{this.props.user.first + ' ' + this.props.user.last}</div>
+        <div>Member</div>
       </div>
       )
   }
