@@ -1,6 +1,8 @@
 //app.jsx
 import React from 'react';
 import axios from 'axios';
+import fetch from 'isomorphic-unfetch';
+import Head from 'next/head';
 import Attendees from './Attendees.jsx';
 import styles from '../styles/app.css';
 
@@ -12,6 +14,7 @@ class App extends React.Component {
           eventUsers: []
         }
     }
+    static async
     componentDidMount() {
       this.getAttendees();
     }
