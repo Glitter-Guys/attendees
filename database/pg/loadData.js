@@ -5,7 +5,7 @@ const options = {
   promiseLib: bb,
 };
 const pgp = require('pg-promise')(options);
-const connectionString = 'postgres://postgres:ackbar@localhost:5432/attendees';
+const connectionString = 'postgres://postgres:POSTGRESPASSWORD@ec2-18-219-208-33.us-east-2.compute.amazonaws.com:5432/attendees';
 const db = pgp(connectionString);
 
 const columnsEventsUsers = new pgp.helpers.ColumnSet(['event_id', 'user_id'], { table: 'events_users' });
@@ -47,7 +47,7 @@ const insertAllUsers = (start) => {
       throw error;
     });
 };
-// insertAllUsers(0);
+insertAllUsers(0);
 const insertAllEvents = (start) => {
   const query = pgp.helpers.insert(generateEventData(), columnsEventsUsers);
   db.none(query)
