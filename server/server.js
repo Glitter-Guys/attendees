@@ -1,7 +1,7 @@
 // require('newrelic');
 const express = require('express');
 const next = require('next');
-const db = require('../database/pg/pgQueries');
+// const db = require('../database/pg/pgQueries');
 // const cors = require('cors');
 // const path = require('path');
 
@@ -19,16 +19,6 @@ app.prepare()
     });
     server.get('*', (req, res) => {
       return handle(req, res);
-    });
-    server.get('/api/:eventid/attendees', (req, res) => {
-      const eventId = `${req.params.eventid}`;
-      db.getAttendees(eventId)
-        .then((results) => {
-          res.send(results);
-        })
-        .catch((error) => {
-          throw error;
-        });
     });
     server.listen(3009, (err) => {
       if (err) throw err;
