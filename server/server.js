@@ -24,8 +24,7 @@ app.prepare()
       const eventId = `${req.params.eventid}`;
       db.getAttendees(eventId)
         .then((results) => {
-          // res.send(results);
-          return results;
+          res.send(results);
         })
         .catch((error) => {
           throw error;
