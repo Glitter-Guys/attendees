@@ -1,0 +1,11 @@
+config:
+  target: 'http://localhost:8000'
+  processor: "./generateRandomID.js"
+  phases:
+    - duration: 20
+      arrivalRate: 100
+scenarios:
+  - flow:
+    - function: "generateRandomID"
+    - get:
+        url: "/api/{{ eventId }}/attendees"

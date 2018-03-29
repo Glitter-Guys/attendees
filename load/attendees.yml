@@ -1,0 +1,10 @@
+config:
+  target: 'http://localhost:8000'
+  phases:
+    - duration: 20
+      arrivalRate: 300
+scenarios:
+  - name: 'test db api speed'
+    flow:
+    - get:
+        url: '/api/999200/attendees'
