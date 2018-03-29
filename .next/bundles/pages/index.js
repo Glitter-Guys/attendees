@@ -12,14 +12,6 @@ module.exports = window.fetch || (window.fetch = __webpack_require__("./node_mod
 
 /***/ }),
 
-/***/ "./node_modules/next/head.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/next/dist/lib/head.js")
-
-
-/***/ }),
-
 /***/ "./pages/Attendee.jsx.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -69,26 +61,31 @@ var Attendee = function (_React$Component) {
   }
 
   (0, _createClass3.default)(Attendee, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement('img', { src: this.props.user.photourl }),
+        "div",
+        { className: "attendee" },
+        _react2.default.createElement("img", { className: "attendee_picture", src: this.props.user.photourl }),
         _react2.default.createElement(
-          'div',
-          null,
+          "div",
+          { className: "attendee_name" },
           this.props.user.first + ' ' + this.props.user.last
         ),
         _react2.default.createElement(
-          'div',
-          null,
-          'Member'
+          "div",
+          { className: "attendee_role" },
+          "Member"
+        ),
+        _react2.default.createElement(
+          "style",
+          { jsx: true },
+          "\n          .attendee {\n            border-radius: 10px;\n            background-color: white;\n            font: \"Graphik Meetup\";\n            margin: 1px;\n            text-align: center;\n            padding: 5px 0px 0px 5px;\n            height: 150px;\n            width: 150px;\n          }\n          .attendee_picture {\n            border-radius: 100px;\n            height: 60%;\n            width: 60%;\n            display: block;\n            margin: 10px auto 0;\n          }\n          .attendee:hover {\n            box-shadow: 1px 1px 1px 1px #C0C0C0;\n          }\n          .attendee_name {\n            margin-top: 5px;\n            font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;\n            font-size: 14px;\n          }\n          .attendee_role {\n            font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;\n            font-size: 10px;\n          }\n        "
         )
       );
     }
   }, {
-    key: '__reactstandin__regenerateByEval',
+    key: "__reactstandin__regenerateByEval",
     value: function __reactstandin__regenerateByEval(key, code) {
       this[key] = eval(code);
     }
@@ -111,8 +108,8 @@ exports.default = _default;
     return;
   }
 
-  reactHotLoader.register(Attendee, 'Attendee', 'C:/Users/Nicholas/Documents/HR/YouDown/service-attendees/pages/Attendee.jsx.js');
-  reactHotLoader.register(_default, 'default', 'C:/Users/Nicholas/Documents/HR/YouDown/service-attendees/pages/Attendee.jsx.js');
+  reactHotLoader.register(Attendee, "Attendee", "C:/Users/Nicholas/Documents/HR/YouDown/service-attendees/pages/Attendee.jsx.js");
+  reactHotLoader.register(_default, "default", "C:/Users/Nicholas/Documents/HR/YouDown/service-attendees/pages/Attendee.jsx.js");
   leaveModule(module);
 })();
 
@@ -186,9 +183,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Attendees = function (_React$Component) {
   (0, _inherits3.default)(Attendees, _React$Component);
 
-  function Attendees() {
+  function Attendees(props) {
     (0, _classCallCheck3.default)(this, Attendees);
-    return (0, _possibleConstructorReturn3.default)(this, (Attendees.__proto__ || Object.getPrototypeOf(Attendees)).apply(this, arguments));
+    return (0, _possibleConstructorReturn3.default)(this, (Attendees.__proto__ || Object.getPrototypeOf(Attendees)).call(this, props));
   }
 
   (0, _createClass3.default)(Attendees, [{
@@ -230,6 +227,11 @@ var Attendees = function (_React$Component) {
               })
             )
           )
+        ),
+        _react2.default.createElement(
+          'style',
+          { jsx: true },
+          '\n        .attendees {\n          background-color: #F6F7F8;\n          font: "Graphik Meetup";\n        }\n      '
         )
       );
     }
@@ -325,10 +327,6 @@ var _isomorphicUnfetch = __webpack_require__("./node_modules/isomorphic-unfetch/
 
 var _isomorphicUnfetch2 = _interopRequireDefault(_isomorphicUnfetch);
 
-var _head = __webpack_require__("./node_modules/next/head.js");
-
-var _head2 = _interopRequireDefault(_head);
-
 var _Attendees = __webpack_require__("./pages/Attendees.jsx");
 
 var _Attendees2 = _interopRequireDefault(_Attendees);
@@ -340,8 +338,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
   enterModule && enterModule(module);
 })();
-// import axios from 'axios';
-
 
 // import styles from './styles/index.css';
 
@@ -355,60 +351,33 @@ var Index = function (_React$Component) {
 
   (0, _createClass3.default)(Index, [{
     key: 'render',
-
-    // componentDidMount() {
-    //   this.getAttendees();
-    // }
-    // getAttendees() {
-    //   const url = window.location.href;
-    //   const urlEnd = url.split('/event/')[1];
-    //   const eventId = urlEnd.split('/')[0];
-    //   axios.get(`/api/${eventId}/attendees`)
-    //     .then((res) => {
-    //       const data = [];
-    //       for (let i = 0; i < res.data.length; i += 1) {
-    //         let row = res.data[i].row;
-    //         row = row.slice(1, row.length - 1);
-    //         row = row.split(',');
-    //         data.push({
-    //           first: row[0],
-    //           last: row[1],
-    //           photourl: row[2],
-    //         });
-    //       }
-    //       // const data = res;
-    //       this.state.eventUsers = data;
-    //       this.state.numberOfAttendees = res.data.length;
-    //       this.setState((state) => ({
-    //         eventUsers: this.state.eventUsers,
-    //         numberOfAttendees: this.state.numberOfAttendees,
-    //       }))
-    //     })
-    //     .catch((err) => {
-    //       throw err;
-    //   })
-    // }
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'app' },
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'attendees_header' },
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'attendees_count' },
             ' Attendees ',
-            '(' + this.state.numberOfAttendees + ')',
+            '(' + this.props.numberOfAttendees + ')',
             ' '
           ),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'seeAll' },
             ' See All '
           )
         ),
-        _react2.default.createElement(_Attendees2.default, null)
+        _react2.default.createElement(_Attendees2.default, { eventUsers: this.props.eventUsers }),
+        _react2.default.createElement(
+          'style',
+          { jsx: true },
+          ' ',
+          '\n          .app {\n            background-color: #F6F7F8;\n            float: left;\n            padding: 30px;\n          }\n          .attendees_header {\n            background-color: #F6F7F8;\n            display: inline-block;\n            padding-bottom: 20px;\n          }\n          .attendees_count {\n            display: inline-block;\n            font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;\n            font-size: 20px;\n            text-decoration: bold;\n              background-color: #F6F7F8;\n          }\n          .seeAll {\n            display: inline-block;\n            background-color: #F6F7F8;\n            position: relative;\n            left: 450px;\n            color: #00a2c7;\n            font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;\n            font-size: 16px;\n          }\n          .seeAll:hover {\n            text-decoration: underline;\n          }\n        '
+        )
       );
     }
   }, {
@@ -425,18 +394,20 @@ var Index = function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(props);
-                _context.next = 3;
-                return (0, _isomorphicUnfetch2.default)('http://localhost:3009/api/' + props.query.eid + '/attendees');
+                _context.next = 2;
+                return (0, _isomorphicUnfetch2.default)('http://localhost:9000/api/' + props.query.eid + '/attendees');
 
-              case 3:
+              case 2:
                 res = _context.sent;
+                _context.next = 5;
+                return res.json();
 
-                console.log(res);
+              case 5:
+                res = _context.sent;
                 data = [];
 
-                for (i = 0; i < res.data.length; i += 1) {
-                  row = res.data[i].row;
+                for (i = 0; i < res.length; i += 1) {
+                  row = res[i].row;
 
                   row = row.slice(1, row.length - 1);
                   row = row.split(',');
@@ -446,12 +417,13 @@ var Index = function (_React$Component) {
                     photourl: row[2]
                   });
                 }
+                console.log(data);
                 return _context.abrupt('return', {
                   eventUsers: data,
-                  numberOfAttendees: res.data.length
+                  numberOfAttendees: res.length
                 });
 
-              case 8:
+              case 10:
               case 'end':
                 return _context.stop();
             }
@@ -471,8 +443,6 @@ var Index = function (_React$Component) {
 
 var _default = Index;
 exports.default = _default;
-// window.Attendees = App;
-
 ;
 
 (function () {

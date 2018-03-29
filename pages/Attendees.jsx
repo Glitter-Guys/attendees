@@ -3,7 +3,10 @@ import Attendee from './Attendee.jsx';
 // import styles from './styles/attendees.css';
 
 class Attendees extends React.Component {
-  render () {
+  constructor (props) {
+    super(props);
+  }
+  render() {
     return (
       <div className="attendees">
       <table>
@@ -24,6 +27,12 @@ class Attendees extends React.Component {
         </tr>
         </tbody>
       </table>
+      <style jsx>{`
+        .attendees {
+          background-color: #F6F7F8;
+          font: "Graphik Meetup";
+        }
+      `}</style>
       </div>
       )
   }
