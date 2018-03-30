@@ -13,7 +13,7 @@ xdescribe('test data insertion into users', () => {
       expect(result.insertedCount).toBe(10000);
       done();
     });
-  });
+  }); 
   test('modularize insertedCount by providing connection from outside', (done) => {
     MongoClient.connect(url, (err, client) => {
       if (err) throw err;

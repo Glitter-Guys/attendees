@@ -1,9 +1,14 @@
-const express = require('express')
-const cors = require('cors');
+const express = require('express');
 const db = require('../database/pg/pgQueries');
 
 const app = express();
-app.get('/', (req, res) => res.send('Hello World!'));
+
+
+app.get('/', (req, res) => {
+  console.log('you found the slash');
+  res.send(200);
+});
+
 app.get('/api/:eventid/attendees', (req, res) => {
   console.log('sending request to db');
   const eventId = `${req.params.eventid}`;
@@ -15,6 +20,8 @@ app.get('/api/:eventid/attendees', (req, res) => {
       throw error;
     });
 });
-app.listen(9000, () => {
-  console.log('ready on port 9000');
+
+app.listen(8000, (err) => {
+  if (err) throw err;
+  console.log('ready on port 8000');
 });
