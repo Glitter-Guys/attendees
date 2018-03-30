@@ -4,7 +4,8 @@ const options = {
   promiseLib: bb,
 };
 const pgp = require('pg-promise')(options);
-const connectionString = 'postgres://postgres:POSTGRESPASSWORD@localhost:5432/attendees';
+
+const connectionString = 'postgres://postgres:ackbar@localhost:5432/attendees';
 const db = pgp(connectionString);
 
 const getAttendees = (eventId) => {

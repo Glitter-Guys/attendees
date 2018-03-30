@@ -1,9 +1,5 @@
-// require('newrelic');
 const express = require('express');
 const next = require('next');
-// const db = require('../database/pg/pgQueries');
-// const cors = require('cors');
-// const path = require('path');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -12,8 +8,7 @@ app.prepare()
   .then(() => {
     const server = express();
     server.get('/event/:eventid/', (req, res) => {
-      const actualPage = '/';
-      console.log(req.params.eventid);
+      const actualPage = '/index';
       const queryParams = { eid: req.params.eventid };
       app.render(req, res, actualPage, queryParams);
     });
@@ -25,27 +20,6 @@ app.prepare()
       console.log('ready on http://localhost:3009');
     });
   })
-  .catch((ex) => {
-    console.error(ex.stack);
+  .catch(() => {
     process.exit(1);
   });
-
-
-
-// app.use(cors());
-// app.use('/event/:eventid/', express.static(path.join(__dirname, '/../client/dist')));
-
-// app.get('/api/:eventid/attendees', (req, res) => {
-//   const eventId = `${req.params.eventid}`;
-//   db.getAttendees(eventId)
-//     .then((results) => {
-//       res.send(results);
-//     })
-//     .catch((error) => {
-//       throw error;
-//     });
-// });
-
-// app.listen(8000, () => {
-//   console.log('listening on port 8000');
-// });
