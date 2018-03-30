@@ -4,11 +4,8 @@ import Attendees from './Attendees';
 // import styles from './styles/index.css';
 
 class Index extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  static async getInitialProps(props) {
-    let res = await fetch(`http://localhost:9000/api/${props.query.eid}/attendees`);
+  static async getInitialProps(context) {
+    let res = await fetch(`http://localhost:9000/api/${context.query.eid}/attendees`);
     res = await res.json();
     const data = [];
     for (let i = 0; i < res.length; i += 1) {
