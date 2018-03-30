@@ -1,0 +1,11 @@
+config:
+  target: 'http://54.183.235.53:3009'
+  processor: "./generateRandomID.js"
+  phases:
+    - duration: 20
+      arrivalRate: 400
+scenarios:
+  - flow:
+    - function: "generateRandomID"
+    - get:
+        url: "/event/{{ eventId }}/"

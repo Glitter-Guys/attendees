@@ -9,10 +9,10 @@
   },
   "scripts": {
     "test": "jest --verbose",
-    "start": "node server/server.js",
     "dev-react": "webpack -d",
     "get-data": "node ./database/pg/loadData.js",
-    "docker": "npm run start"
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "async": "^2.6.0",
